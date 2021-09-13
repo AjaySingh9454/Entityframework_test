@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "User Details";
+
+}
+@model List<Entityframeworktest.Models.tbl_UserMaster>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" />
+<link href="https://cdn.datatables.net/1.11.1/css/dataTables.bootstrap5.min.css" />
+
+<div class="container">
+    <br />
+    <br />
+    <div class="card">
+        <table id="example" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+
+                <tr>
+                    <th>Name</th>
+                    <th>Mobile</th>
+                    <th>Email</th>
+                    <th>User In Role</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td>@item.UserName</td>
+                        <td>@item.Mobile</td>
+                        <td>@item.Email</td>
+                        <td>@item.UserInRole</td>
+                        <td><i class="fa fa-pencil" style="cursor:pointer" onclick="editUser('@item.Id')"></i>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-trash" style="cursor:pointer" onclick="deletUser('@item.Id')"></i></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.1/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+
+    function editUser(Id) {
+        location.href = "/Home/Index?Id=" + Id;
+    }
+
+    function deletUser(Id) {
+        var obj = { Id: Id};
+        $.ajax({
+            type: 'POST',
+            cache: false,
+            url: '/Home/DeleteUser',
+            data: { data: JSON.stringify(obj) },
+            success: function (res) {
+                alert(res);
+                window.location.reload(true);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+            }
+        });
+    }
+   
+    
+</script>
