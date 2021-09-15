@@ -7,16 +7,16 @@
       <Schema Namespace="EntityFrameWorkTestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityType Name="tbl_UserMaster">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="EmployeeId" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserName" Type="varchar" MaxLength="180" Nullable="false" />
-          <Property Name="Email" Type="varchar" MaxLength="120" Nullable="false" />
-          <Property Name="Mobile" Type="varchar" MaxLength="11" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="UserInRole" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="CreatedBy" Type="varchar" MaxLength="80" Nullable="false" />
-          <Property Name="ModifiedBy" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeName" Type="varchar" MaxLength="180" Nullable="false" />
+          <Property Name="EmployeeDob" Type="date" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="Address" Type="text" Nullable="false" />
+          <Property Name="State" Type="varchar" MaxLength="180" Nullable="false" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="180" Nullable="false" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="180" Nullable="false" />
           <Property Name="CreatedDate" Type="datetime" Nullable="false" />
           <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
@@ -31,16 +31,16 @@
       <Schema Namespace="EntityFrameWorkTestModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityType Name="tbl_UserMaster">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="EmployeeId" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" MaxLength="180" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Mobile" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserInRole" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CreatedBy" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ModifiedBy" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeName" Type="String" MaxLength="180" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmployeeDob" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="180" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="180" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="180" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
@@ -57,12 +57,12 @@
           <EntitySetMapping Name="tbl_UserMaster">
             <EntityTypeMapping TypeName="EntityFrameWorkTestModel.tbl_UserMaster">
               <MappingFragment StoreEntitySet="tbl_UserMaster">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserInRole" ColumnName="UserInRole" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="EmployeeDob" ColumnName="EmployeeDob" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />

@@ -4,36 +4,46 @@
     <br />
     <div class="card">
         <div class="card-body">
-            <form  method="post" id="userform">
+            <form method="post" id="userform">
                 <div class="form-group">
-                    <input type="text" style="display:none" value="@Model.Id" required class="form-control" id="Id" name="Id">
-                    <label for="Name">Name :</label>
-                    <input type="text" value="@Model.UserName" required class="form-control" id="UserName" name="UserName" aria-describedby="name" placeholder="Enter name">
+                    <input type="text" style="display:none"   value="@Model.EmployeeId" required class="form-control" id="EmployeeId" name="EmployeeId">
+                    <label for="EmployeeName">Employee Name :</label>
+                    <input type="text" value="@Model.EmployeeName"  pattern="[A-Za-z]{1.180}" required class="form-control" id="EmployeeName" name="EmployeeName" aria-describedby="EmployeeName" placeholder="Enter Employee Name">
+
 
                 </div>
 
                 <div class="form-group">
-                    <label for="Name">Mobile :</label>
-                    <input type="text" value="@Model.Mobile" required class="form-control" id="Mobile" name="Mobile" aria-describedby="Mobile" placeholder="Enter Mobile No">
+                    <label for="EmployeeName">DOB :</label>
+                    <input type="date" value="@Model.EmployeeDob.ToString("yyyy-MM-dd")" required class="form-control" id="EmployeeDob" name="EmployeeDob" aria-describedby="EmployeeDob" placeholder="Enter Employee DOB">
 
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" value="@Model.Email" required id="Email" name="Email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
 
+                <div class="form-group">
+
+                    <p>Gender :</p>
+                    <div class="input-group ">
+                        <input type="radio" name="gender" value="Male">
+                        <label for="Male">Male</label>&nbsp;&nbsp;
+                        <input type="radio" name="gender" value="Female">
+                        <label for="Female">Female</label>&nbsp;&nbsp;
+                        <input type="radio" name="gender" value="Transgender">
+                        <label for="Transgender">Transgender</label>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" value="@Model.Password" required class="form-control" id="Password" name="Password" placeholder="Password">
+                    <label for="Address">Address</label>
+                    <textarea type="text" required class="form-control" id="Address" pattern="[A-Za-z]{1.255}" name="Address">@Model.Address</textarea>
                 </div>
                 <div class="form-group">
-                    <label for="role">User-In-Role</label>
-                    <select class="form-control" value="@Model.UserInRole" id="UserInRole" name="UserInRole">
-                        <option>User</option>
+                    <label for="State">State</label>
+                    <select class="form-control"  id="State" name="State">
+                        <option>UP</option>
+                        <option>MP</option>
                     </select>
                 </div>
-                <div class="form-check">
-                    <input type="checkbox" required class="form-check-input" id="exampleCheck1">
+                <div class="form-check" hidden>
+                    <input type="checkbox"  class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">IsActive</label>
                 </div>
                 <button type="submit" required class="btn btn-primary">Add New User</button>
@@ -44,27 +54,49 @@
 
 <script>
 
+    $(document).ready(function (e) {
+        var genders = document.getElementsByName("gender");
+        genders[0].checked = true;
+        for (var i = 0; i < genders.length; i++) {
+            if (genders[i].value == '@Model.Gender') {
+                 genders[i].checked=true;
+                break;
+            }
+        }
+        
+        if ('@Model.State' == '') { } else {
+            $("#State").val('@Model.State').change();
+        }
+    });
+
     $("#userform").submit(function (e) {
         e.preventDefault();
+        var genders = document.getElementsByName("gender");
+        var final_gender = "";
+        for (var i = 0; i < genders.length; i++) {
+            if (genders[i].checked == true) {
+                final_gender = genders[i].value;
+                break;
+            }
+        }
         var obj = {
-            UserName: $("#UserName").val(),
-            UserInRole: $("#UserInRole").val(),
-            Email: $("#Email").val(),
-            Password: $("#Password").val(),
-            Mobile: $("#Mobile").val(),
-            Id: $("#Id").val(),
+            EmployeeId: $("#EmployeeId").val(),
+            EmployeeName: $("#EmployeeName").val(),
+            EmployeeDob: $("#EmployeeDob").val(),
+            Gender: final_gender,
+            Address: $("#Address").val(),
+            State: $("#State").val()
         };
+        console.log(obj);
         var data = JSON.stringify(obj);
-
-        console.log(data);
         $.ajax({
             type: 'POST',
             cache: false,
             url: '/Home/SaveOrUpdate',
-            data: { data: data},
+            data: { data: data },
             success: function (res) {
                 alert(res);
-                location.href="/Home/About"
+                location.href = "/Home/About"
             },
             error: function (jqXHR, textStatus, errorThrown) {
             }

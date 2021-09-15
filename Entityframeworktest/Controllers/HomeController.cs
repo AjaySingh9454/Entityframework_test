@@ -23,13 +23,13 @@ namespace Entityframeworktest.Controllers
                 if (!string.IsNullOrEmpty(strId))
                 {
                     int idd = Convert.ToInt32(strId);
-                    uu = entities.tbl_UserMaster.FirstOrDefault(u => u.Id == idd);
-                    uobj.Id = idd;
-                    uobj.UserName = uu.UserName;
-                    uobj.Email = uu.Email;
-                    uobj.Mobile = uu.Mobile;
-                    uobj.Password = uu.Password;
-                    uobj.UserInRole = uu.UserInRole;
+                    uu = entities.tbl_UserMaster.FirstOrDefault(u => u.EmployeeId == idd);
+                    uobj.EmployeeId = idd;
+                    uobj.EmployeeName = uu.EmployeeName;
+                    uobj.EmployeeDob = uu.EmployeeDob;
+                    uobj.Gender = uu.Gender;
+                    uobj.Address = uu.Address;
+                    uobj.State = uu.State; 
                 }
 
 
@@ -54,24 +54,26 @@ namespace Entityframeworktest.Controllers
             tbl_UserMaster userMaster = new tbl_UserMaster();
             try
             {
+
+               
                 JObject jobj = JObject.Parse(data);
-                int idd = jobj.GetValue("Id").Value<int>();
-                if (jobj.GetValue("Id").Value<int>()>0)
+                int idd = jobj.GetValue("EmployeeId").Value<int>();
+                if (idd>0)
                 {
-                    userMaster=entities.tbl_UserMaster.Where(x => x.Id == idd).FirstOrDefault();
+                   userMaster=entities.tbl_UserMaster.Where(x => x.EmployeeId == idd).FirstOrDefault();
                 }
-                userMaster.UserName = jobj.GetValue("UserName").Value<string>();
-                userMaster.UserInRole = jobj.GetValue("UserInRole").Value<string>();
-                userMaster.Mobile = jobj.GetValue("Mobile").Value<string>();
-                userMaster.Email = jobj.GetValue("Email").Value<string>();
-                userMaster.Password = jobj.GetValue("Password").Value<string>();
+                userMaster.EmployeeName = jobj.GetValue("EmployeeName").Value<string>();
+                userMaster.EmployeeDob = Convert.ToDateTime(jobj.GetValue("EmployeeDob").Value<string>());
+                userMaster.Gender = jobj.GetValue("Gender").Value<string>();
+                userMaster.Address = jobj.GetValue("Address").Value<string>();
+                userMaster.State = jobj.GetValue("State").Value<string>();
                 userMaster.CreatedBy = "ajay@gmail.com";
                 userMaster.ModifiedBy = "ajay@gmail.com";
                 userMaster.CreatedDate = Convert.ToDateTime( DateTime.Now.ToString("yyyy-MM-dd"));
                 userMaster.ModifiedDate = Convert.ToDateTime(DateTime.Now.ToString("yyyy-MM-dd"));
                 userMaster.IsActive = true;
 
-                if(jobj.GetValue("Id").Value<int>()<=0)
+                if(idd<=0)
                 entities.tbl_UserMaster.Add(userMaster);
                 entities.SaveChanges();
             }
@@ -91,8 +93,8 @@ namespace Entityframeworktest.Controllers
                 JObject jobj = JObject.Parse(data);
                 tbl_UserMaster userObj = new tbl_UserMaster();
                 int id = jobj.GetValue("Id").Value<int>();
-                if (jobj.GetValue("Id").Value<int>() > 0)
-                    userObj=entities.tbl_UserMaster.FirstOrDefault(u => u.Id ==id );
+                if (id > 0)
+                    userObj=entities.tbl_UserMaster.FirstOrDefault(u => u.EmployeeId == id );
 
                 entities.tbl_UserMaster.Remove(userObj);
                 entities.SaveChanges();

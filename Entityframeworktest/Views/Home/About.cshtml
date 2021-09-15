@@ -14,10 +14,11 @@
             <thead>
 
                 <tr>
-                    <th>Name</th>
-                    <th>Mobile</th>
-                    <th>Email</th>
-                    <th>User In Role</th>
+                    <th>EmployeeName</th>
+                    <th>EmployeeDob</th>
+                    <th>Gender</th>
+                    <th>Address</th>
+                    <th>State</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -25,13 +26,14 @@
                 @foreach (var item in Model)
                 {
 
-                    <tr>
-                        <td>@item.UserName</td>
-                        <td>@item.Mobile</td>
-                        <td>@item.Email</td>
-                        <td>@item.UserInRole</td>
-                        <td><i class="fa fa-pencil" style="cursor:pointer" onclick="editUser('@item.Id')"></i>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-trash" style="cursor:pointer" onclick="deletUser('@item.Id')"></i></td>
-                    </tr>
+                <tr>
+                    <td>@item.EmployeeName</td>
+                    <td>@item.EmployeeDob</td>
+                    <td>@item.Gender</td>
+                    <td>@item.Address</td>
+                    <td>@item.State</td>
+                    <td><i class="fa fa-pencil" style="cursor:pointer" onclick="editUser('@item.EmployeeId')"></i>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-trash" style="cursor:pointer" onclick="deletUser('@item.EmployeeId')"></i></td>
+                </tr>
                 }
             </tbody>
         </table>

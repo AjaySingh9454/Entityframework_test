@@ -2,16 +2,16 @@
 <Schema Namespace="EntityFrameWorkTestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
   <EntityType Name="tbl_UserMaster">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="EmployeeId" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserName" Type="varchar" MaxLength="180" Nullable="false" />
-    <Property Name="Email" Type="varchar" MaxLength="120" Nullable="false" />
-    <Property Name="Mobile" Type="varchar" MaxLength="11" Nullable="false" />
-    <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="UserInRole" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="CreatedBy" Type="varchar" MaxLength="80" Nullable="false" />
-    <Property Name="ModifiedBy" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeName" Type="varchar" MaxLength="180" Nullable="false" />
+    <Property Name="EmployeeDob" Type="date" Nullable="false" />
+    <Property Name="Gender" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="Address" Type="text" Nullable="false" />
+    <Property Name="State" Type="varchar" MaxLength="180" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="180" Nullable="false" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="180" Nullable="false" />
     <Property Name="CreatedDate" Type="datetime" Nullable="false" />
     <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
